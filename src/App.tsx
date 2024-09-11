@@ -4,8 +4,8 @@ import { HomeOutlined, UserOutlined, ProjectOutlined, ToolOutlined, MessageOutli
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 
-import PortfolioHeader from './components/header';
-import PortfolioFooter from './components/footer';
+// import PortfolioHeader from './components/header';
+// import PortfolioFooter from './components/footer';
 import HomePage from './components/homePage';
 import AboutMe from './components/aboutme';
 import Projects from './components/projects';
@@ -19,7 +19,7 @@ const App: React.FC = () => {
     <Router>
       <Layout>
         <Header>
-          <HeaderSection />
+          {/* <HeaderSection /> */}
         </Header>
 
         <Layout>
@@ -59,7 +59,7 @@ const App: React.FC = () => {
             </Content>
 
             <Footer style={{ textAlign: 'center' }}>
-              <FooterSection />
+              {/* <FooterSection /> */}
             </Footer>
           </Layout>
         </Layout>
