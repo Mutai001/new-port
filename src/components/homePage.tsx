@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Typography, Row, Col, Card } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRightOutlined, FileTextOutlined, ProjectOutlined, ToolOutlined } from '@ant-design/icons';
+import { ArrowRightOutlined, FileTextOutlined, ProjectOutlined } from '@ant-design/icons';
 
 const { Title, Paragraph } = Typography;
 
