@@ -5,12 +5,12 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 
 import PortfolioHeader from './components/header';
-import PortfolioFooter from './components/';
-import HomePage from './HomePage';
-import AboutMe from './AboutMe';
-import Projects from './Projects';
-import Skills from './Skills';
-import ContactSection from './ContactSection';
+import PortfolioFooter from './components/footer';
+import HomePage from './components/homePage';
+import AboutMe from './components/aboutme';
+import Projects from './components/projects';
+import Skills from './components/skills/skills';
+import ContactSection from './components/contactSection';
 
 const { Header, Content, Footer } = Layout;
 
