@@ -1,61 +1,71 @@
-import React, { useState } from 'react';
-import {
-  HomeOutlined,
-  UserOutlined,
-  CodeOutlined,
-  ContactsOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  FileTextOutlined,
-} from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-import { Button, Menu } from 'antd';
+import React from 'react';
+import { Layout, Menu } from 'antd';
+import { HomeOutlined, UserOutlined, ProjectOutlined, ToolOutlined, MessageOutlined } from '@ant-design/icons';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
-type MenuItem = Required<MenuProps>['items'][number];
 
-const items: MenuItem[] = [
-  { key: '1', icon: <HomeOutlined />, label: 'Home' },
-  { key: '2', icon: <UserOutlined />, label: 'About Me' },
-  { key: '3', icon: <CodeOutlined />, label: 'Projects' },
-  {
-    key: 'sub1',
-    label: 'Skills',
-    icon: <FileTextOutlined />,
-    children: [
-      { key: '4', label: 'Frontend' },
-      { key: '5', label: 'Backend' },
-      { key: '6', label: 'DevOps' },
-    ],
-  },
-  {
-    key: '7',
-    icon: <ContactsOutlined />,
-    label: 'Contact',
-  },
-];
+import PortfolioHeader from './components/header';
+import PortfolioFooter from './components/';
+import HomePage from './HomePage';
+import AboutMe from './AboutMe';
+import Projects from './Projects';
+import Skills from './Skills';
+import ContactSection from './ContactSection';
 
-const PortfolioApp: React.FC = () => {
-  const [collapsed, setCollapsed] = useState(false);
+const { Header, Content, Footer } = Layout;
 
-  const toggleCollapsed = () => {
-    setCollapsed(!collapsed);
-  };
-
+const App: React.FC = () => {
   return (
-    <div style={{ width: 256 }}>
-      <Button type="primary" onClick={toggleCollapsed} style={{ marginBottom: 16 }}>
-        {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-      </Button>
-      <Menu
-        defaultSelectedKeys={['1']}
-        defaultOpenKeys={['sub1']}
-        mode="inline"
-        theme="dark"
-        inlineCollapsed={collapsed}
-        items={items}
-      />
-    </div>
+    <Router>
+      <Layout>
+        <Header>
+          <HeaderSection />
+        </Header>
+
+        <Layout>
+          <Layout.Sider width={256} className="site-layout-background">
+            <Menu
+              mode="inline"
+              defaultSelectedKeys={['home']}
+              style={{ height: '100%', borderRight: 0 }}
+            >
+              <Menu.Item key="home" icon={<HomeOutlined />}>
+                <Link to="/">Home</Link>
+              </Menu.Item>
+              <Menu.Item key="about" icon={<UserOutlined />}>
+                <Link to="/about">About Me</Link>
+              </Menu.Item>
+              <Menu.Item key="projects" icon={<ProjectOutlined />}>
+                <Link to="/projects">Projects</Link>
+              </Menu.Item>
+              <Menu.Item key="skills" icon={<ToolOutlined />}>
+                <Link to="/skills">Skills</Link>
+              </Menu.Item>
+              <Menu.Item key="contact" icon={<MessageOutlined />}>
+                <Link to="/contact">Contact</Link>
+              </Menu.Item>
+            </Menu>
+          </Layout.Sider>
+
+          <Layout>
+            <Content style={{ padding: '0 24px', minHeight: 280 }}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/about" element={<AboutMe />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/skills" element={<Skills />} />
+                <Route path="/contact" element={<ContactSection />} />
+              </Routes>
+            </Content>
+
+            <Footer style={{ textAlign: 'center' }}>
+              <FooterSection />
+            </Footer>
+          </Layout>
+        </Layout>
+      </Layout>
+    </Router>
   );
 };
 
-export default PortfolioApp;
+export default App;
