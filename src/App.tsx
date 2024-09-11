@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import HomePage from './components/homePage';
 import AboutMe from './components/aboutme';
 import Projects from './components/projects';
-import Skills from './components/skills/skills';
+import Skills from './components/skills';
 import ContactSection from './components/contactSection';
 
 const { Header, Content, Footer } = Layout;

@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { Card, Row, Col, Typography, Tag, Button } from 'antd';
 
 const { Title, Paragraph } = Typography;
@@ -37,21 +37,48 @@ const projects: Project[] = [
   },
 ];
 
+const cardStyle: React.CSSProperties = {
+  borderRadius: '12px',
+  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+  backgroundColor: '#F7F7F8',
+  transition: 'all 0.3s ease',
+};
+
+
+const tagStyle: React.CSSProperties = {
+  margin: '4px',
+  backgroundColor: '#4E31AA',
+  color: '#F7F7F8',
+};
+
+const buttonStyle: React.CSSProperties = {
+  backgroundColor: '#3795BD',
+  borderColor: '#3795BD',
+  color: '#F7F7F8',
+};
+
 const Projects: React.FC = () => {
   return (
-    <div style={{ padding: '50px', backgroundColor: '#f0f2f5' }}>
-      <Title level={2} style={{ textAlign: 'center' }}>
+    <div style={{ padding: '50px', backgroundColor: '#F7F7F8' }}>
+      <Title level={2} style={{ textAlign: 'center', color: '#3A1078' }}>
         Projects
       </Title>
       <Row gutter={[16, 16]} justify="center">
         {projects.map((project) => (
-          <Col xs={24} sm={12} lg={8} key={project.title}>
+          <Col xs={24} sm={12} md={8} lg={6} key={project.title}>
             <Card
               title={project.title}
               bordered={false}
-              style={{ borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
+              style={cardStyle}
+              bodyStyle={{ padding: '16px' }}
+              hoverable
               actions={[
-                <Button type="primary" href={project.link} target="_blank">
+                <Button
+                  type="primary"
+                  href={project.link}
+                  target="_blank"
+                  style={buttonStyle}
+                >
                   View Project
                 </Button>,
               ]}
@@ -59,7 +86,7 @@ const Projects: React.FC = () => {
               <Paragraph>{project.description}</Paragraph>
               <Paragraph>
                 {project.techStack.map((tech) => (
-                  <Tag color="blue" key={tech}>
+                  <Tag style={tagStyle} key={tech}>
                     {tech}
                   </Tag>
                 ))}

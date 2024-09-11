@@ -1,13 +1,25 @@
-// import React from 'react';
+import React from 'react';
 import { Form, Input, Button, Card, Row, Col, Typography, Space, notification } from 'antd';
 import { MailOutlined, PhoneOutlined, EnvironmentOutlined, LinkedinOutlined, GithubOutlined } from '@ant-design/icons';
-import ReCAPTCHA from 'react-google-recaptcha';
 
 const { Title, Paragraph } = Typography;
 const { TextArea } = Input;
 
+const cardStyle: React.CSSProperties = {
+  borderRadius: '12px',
+  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+  backgroundColor: '#F7F7F8',
+  transition: 'all 0.3s ease',
+};
+
+const buttonStyle: React.CSSProperties = {
+  backgroundColor: '#3795BD',
+  borderColor: '#3795BD',
+  color: '#F7F7F8',
+};
+
 const ContactSection: React.FC = () => {
-  const onFinish = (values: never) => {
+  const onFinish = (values: unknown) => {
     console.log('Received values:', values);
     // Show success notification
     notification.success({
@@ -16,14 +28,9 @@ const ContactSection: React.FC = () => {
     });
   };
 
-  const onRecaptchaChange = (value: string | null) => {
-    console.log('ReCAPTCHA value:', value);
-    // Handle ReCAPTCHA verification here
-  };
-
   return (
-    <div style={{ padding: '50px', backgroundColor: '#f0f2f5' }}>
-      <Title level={2} style={{ textAlign: 'center', marginBottom: '40px' }}>
+    <div style={{ padding: '50px', backgroundColor: '#F7F7F8' }}>
+      <Title level={2} style={{ textAlign: 'center', marginBottom: '40px', color: '#3A1078' }}>
         Get in Touch
       </Title>
 
@@ -32,28 +39,29 @@ const ContactSection: React.FC = () => {
         <Col xs={24} md={12} lg={8}>
           <Card
             title={
-              <Title level={4} style={{ margin: 0 }}>
+              <Title level={4} style={{ margin: 0, color: '#3A1078' }}>
                 Contact Information
               </Title>
             }
             bordered={false}
-            style={{ borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
+            style={cardStyle}
+            hoverable
           >
             <Space direction="vertical" size="large">
               <Paragraph>
-                <MailOutlined /> Email: <a href="mailto:cyrus@gmail.com">cyrus@gmail.com</a>
+                <MailOutlined style={{ color: '#3A1078' }} /> Email: <a href="mailto:cyrus@gmail.com">cyrus@gmail.com</a>
               </Paragraph>
               <Paragraph>
-                <PhoneOutlined /> Phone: <a href="tel:+0722227154">0722227154</a>
+                <PhoneOutlined style={{ color: '#3A1078' }} /> Phone: <a href="tel:+0722227154">0722227154</a>
               </Paragraph>
               <Paragraph>
-                <EnvironmentOutlined /> Location: 30 Kutus
+                <EnvironmentOutlined style={{ color: '#3A1078' }} /> Location: 30 Kutus
               </Paragraph>
               <Paragraph>
-                <LinkedinOutlined /> LinkedIn: <a href="https://linkedin.com/in/yourprofile">linkedin.com/in/yourprofile</a>
+                <LinkedinOutlined style={{ color: '#3A1078' }} /> LinkedIn: <a href="https://linkedin.com/in/yourprofile">linkedin.com/in/yourprofile</a>
               </Paragraph>
               <Paragraph>
-                <GithubOutlined /> GitHub: <a href="https://github.com/Mutai001">github.com/Mutai001</a>
+                <GithubOutlined style={{ color: '#3A1078' }} /> GitHub: <a href="https://github.com/Mutai001">github.com/Mutai001</a>
               </Paragraph>
             </Space>
           </Card>
@@ -63,12 +71,13 @@ const ContactSection: React.FC = () => {
         <Col xs={24} md={12} lg={8}>
           <Card
             title={
-              <Title level={4} style={{ margin: 0 }}>
+              <Title level={4} style={{ margin: 0, color: '#3A1078' }}>
                 Send Me a Message
               </Title>
             }
             bordered={false}
-            style={{ borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
+            style={cardStyle}
+            hoverable
           >
             <Form
               layout="vertical"
@@ -100,14 +109,7 @@ const ContactSection: React.FC = () => {
               </Form.Item>
 
               <Form.Item>
-                <ReCAPTCHA
-                  sitekey="YOUR_RECAPTCHA_SITE_KEY"
-                  onChange={onRecaptchaChange}
-                />
-              </Form.Item>
-
-              <Form.Item>
-                <Button type="primary" htmlType="submit" block>
+                <Button type="primary" htmlType="submit" block style={buttonStyle}>
                   Send Message
                 </Button>
               </Form.Item>

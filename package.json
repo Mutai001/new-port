@@ -12,6 +12,7 @@
   "dependencies": {
     "@ant-design/cssinjs": "^1.21.1",
     "@ant-design/icons": "^5.4.0",
+    "@emotion/react": "^11.13.3",
     "antd": "^5.20.6",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.45",
