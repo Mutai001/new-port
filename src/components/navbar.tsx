@@ -12,7 +12,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const { Header } = Layout;
-const { SubMenu } = Menu; // Import SubMenu from Menu
+const { SubMenu } = Menu;
 
 const PortfolioApp: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -28,34 +28,48 @@ const PortfolioApp: React.FC = () => {
         width: '100%',
         zIndex: 1,
         backgroundColor: '#3A1078',
-        padding: 0,
+        padding: '0 16px',
         display: 'flex',
-        flexDirection: 'column',
+        justifyContent: 'space-between',
         alignItems: 'center',
+        flexWrap: 'wrap',
       }}
     >
-      <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <Button
-          type="primary"
-          onClick={toggleMenu}
-          style={{
-            marginLeft: '16px',
-            backgroundColor: '#4E31AA',
-            borderColor: '#4E31AA',
-          }}
-        >
-          {showMenu ? <MenuFoldOutlined style={{ color: '#F7F7F8' }} /> : <BarsOutlined style={{ color: '#F7F7F8' }} />}
-        </Button>
-        <div style={{ color: '#F7F7F8', fontSize: '20px' }}>Portfolio</div>
+      <Button
+        type="primary"
+        onClick={toggleMenu}
+        style={{
+          marginLeft: '16px',
+          backgroundColor: '#4E31AA',
+          borderColor: '#4E31AA',
+        }}
+      >
+        {showMenu ? <MenuFoldOutlined style={{ color: '#F7F7F8' }} /> : <BarsOutlined style={{ color: '#F7F7F8' }} />}
+      </Button>
+      <div
+        style={{
+          color: '#F7F7F8',
+          fontSize: '24px',
+          fontWeight: 'bold',
+          textAlign: 'center',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+        }}
+      >
+        Portfolio
       </div>
+
       {showMenu && (
         <Menu
           mode="horizontal"
           theme="dark"
           style={{
-            display: 'flex',
-            justifyContent: 'center',
             backgroundColor: '#3A1078',
+            flex: '1',
+            justifyContent: 'center',
+            transition: 'all 0.3s ease',
+            marginTop: '16px',
+            paddingBottom: '10px',
           }}
         >
           <Menu.Item key="1" icon={<HomeOutlined />}>
@@ -68,7 +82,6 @@ const PortfolioApp: React.FC = () => {
             <Link to="/projects">Projects</Link>
           </Menu.Item>
 
-          {/* Submenu for Skills */}
           <SubMenu key="sub1" icon={<FileTextOutlined />} title="Skills">
             <Menu.Item key="4">
               <Link to="/skills#frontend">Frontend</Link>
