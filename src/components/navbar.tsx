@@ -1,66 +1,40 @@
-// import React, { useState } from 'react';
 import {
   HomeOutlined,
   UserOutlined,
   CodeOutlined,
   ContactsOutlined,
-  MenuFoldOutlined,
   FileTextOutlined,
-  BarsOutlined
+  MenuFoldOutlined,
+  BarsOutlined,
 } from '@ant-design/icons';
 import { Button, Menu, Layout } from 'antd';
-import type { MenuProps } from 'antd';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const { Sider, Content, Header } = Layout;
-
-const items: MenuProps['items'] = [
-  { key: '1', icon: <HomeOutlined />, label: 'Home' },
-  { key: '2', icon: <UserOutlined />, label: 'About Me' },
-  { key: '3', icon: <CodeOutlined />, label: 'Projects' },
-  {
-    key: 'sub1',
-    label: 'Skills',
-    icon: <FileTextOutlined />,
-    children: [
-      { key: '4', label: 'Frontend' },
-      { key: '5', label: 'Backend' },
-      { key: '6', label: 'DevOps' },
-    ],
-  },
-  {
-    key: '7',
-    icon: <ContactsOutlined />,
-    label: 'Contact',
-  },
-];
+const { Header } = Layout;
+const { SubMenu } = Menu; // Import SubMenu from Menu
 
 const PortfolioApp: React.FC = () => {
-  const [collapsed, setCollapsed] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
-
-  const toggleCollapsed = () => {
-    setCollapsed(!collapsed);
-  };
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Header
-        style={{
-          position: 'fixed',
-          width: '100%',
-          zIndex: 1,
-          backgroundColor: '#3A1078',
-          padding: 0,
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
+    <Header
+      style={{
+        position: 'fixed',
+        width: '100%',
+        zIndex: 1,
+        backgroundColor: '#3A1078',
+        padding: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Button
           type="primary"
           onClick={toggleMenu}
@@ -72,50 +46,47 @@ const PortfolioApp: React.FC = () => {
         >
           {showMenu ? <MenuFoldOutlined style={{ color: '#F7F7F8' }} /> : <BarsOutlined style={{ color: '#F7F7F8' }} />}
         </Button>
-        <div style={{ color: '#F7F7F8', marginRight: '16px' }}>Portfolio</div>
-      </Header>
+        <div style={{ color: '#F7F7F8', fontSize: '20px' }}>Portfolio</div>
+      </div>
+      {showMenu && (
+        <Menu
+          mode="horizontal"
+          theme="dark"
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            backgroundColor: '#3A1078',
+          }}
+        >
+          <Menu.Item key="1" icon={<HomeOutlined />}>
+            <Link to="/">Home</Link>
+          </Menu.Item>
+          <Menu.Item key="2" icon={<UserOutlined />}>
+            <Link to="/about">About Me</Link>
+          </Menu.Item>
+          <Menu.Item key="3" icon={<CodeOutlined />}>
+            <Link to="/projects">Projects</Link>
+          </Menu.Item>
 
-      <Layout style={{ marginTop: 64 }}>
-        {showMenu && (
-          <Sider
-            collapsible
-            collapsed={collapsed}
-            onCollapse={toggleCollapsed}
-            theme="dark"
-            style={{
-              position: 'fixed',
-              height: '100%',
-              left: 0,
-              top: 64,
-              zIndex: 2,
-              backgroundColor: '#3A1078',
-            }}
-          >
-            <Menu
-              defaultSelectedKeys={['1']}
-              defaultOpenKeys={['sub1']}
-              mode="inline"
-              theme="dark"
-              inlineCollapsed={collapsed}
-              items={items}
-            />
-          </Sider>
-        )}
+          {/* Submenu for Skills */}
+          <SubMenu key="sub1" icon={<FileTextOutlined />} title="Skills">
+            <Menu.Item key="4">
+              <Link to="/skills#frontend">Frontend</Link>
+            </Menu.Item>
+            <Menu.Item key="5">
+              <Link to="/skills#backend">Backend</Link>
+            </Menu.Item>
+            <Menu.Item key="6">
+              <Link to="/skills#devops">DevOps</Link>
+            </Menu.Item>
+          </SubMenu>
 
-        <Layout style={{ marginLeft: showMenu ? 256 : 0, transition: 'margin-left 0.3s' }}>
-          <Content
-            style={{
-              padding: '24px',
-              margin: 0,
-              minHeight: 280,
-              backgroundColor: '#F7F7F8',
-            }}
-          >
-            {/* Content goes here */}
-          </Content>
-        </Layout>
-      </Layout>
-    </Layout>
+          <Menu.Item key="7" icon={<ContactsOutlined />}>
+            <Link to="/contact">Contact</Link>
+          </Menu.Item>
+        </Menu>
+      )}
+    </Header>
   );
 };
 

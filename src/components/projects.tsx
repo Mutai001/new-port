@@ -30,7 +30,7 @@ const projects: Project[] = [
     link: 'https://github.com/Mutai001/portfolio-website',
   },
   {
-    title: 'Tech Giants E-commerce',
+    title: 'Electronics online-shop',
     description: 'An electronics e-commerce store with dynamic product displays and a fully functional cart.',
     techStack: ['React', 'TailwindCSS', 'Firebase', 'Redux'],
     link: 'https://github.com/Mutai001/tech-giants-store',
