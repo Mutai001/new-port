@@ -12,8 +12,8 @@ const Container = styled.div`
 `;
 
 const StyledCard = styled(Card)`
-  width: 300px; /* Fixed width */
-  margin: 10px auto; /* Centered and with space around */
+  width: 300px;
+  margin: 10px auto;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   background-color: #3A1078;
@@ -35,22 +35,28 @@ const StyledParagraph = styled(Paragraph)`
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  color: #333; /* Improved visibility */
+`;
 
-  &:hover {
-    background-color: #E6F7FF;
-    border-color: #4E31AA;
-  }
+const SkillsContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 20px;
 `;
 
 const SkillsCard = styled(StyledCard)`
-  max-width: 300px; /* Match the width of other cards */
-  margin-top: 20px; /* Ensure space between sections */
+  max-width: 300px;
+  margin-top: 20px;
+`;
+
+const SectionTitle = styled(Title)`
+  color: #3A1078;
 `;
 
 const InterestsCard = styled(StyledCard)`
-  max-width: 300px; /* Match the width of other cards */
-  margin-top: 20px; /* Ensure space between sections */
+  max-width: 300px;
+  margin-top: 20px;
 `;
 
 const AboutMe: React.FC = () => {
@@ -59,10 +65,10 @@ const AboutMe: React.FC = () => {
       <Space direction="vertical" size="large" align="center">
         {/* Avatar and Name Section */}
         <StyledCard>
-          <Avatar 
-            size={120} 
-            icon={<UserOutlined />} 
-            style={{ backgroundColor: '#F7F7F8', color: '#3A1078' }} // Avatar background and icon color
+          <Avatar
+            size={120}
+            icon={<UserOutlined />}
+            style={{ backgroundColor: '#F7F7F8', color: '#3A1078' }}
           />
           <Title level={2} style={{ color: '#F7F7F8', marginTop: '16px' }}>
             Cyrus Kimutai
@@ -82,11 +88,12 @@ const AboutMe: React.FC = () => {
         {/* Divider */}
         <Divider style={{ borderColor: '#3795BD' }} />
 
-        {/* Skills Section */}
-        <SkillsCard>
-          <Title level={4} style={{ color: '#3A1078' }}>Skills & Technologies</Title>
-          <Paragraph>
-            <Text strong style={{ color: '#3A1078' }}>Frontend:</Text>
+        {/* Skills Section in Row */}
+        <SectionTitle level={4}>Skills & Technologies</SectionTitle>
+        <SkillsContainer>
+          {/* Frontend Section */}
+          <SkillsCard>
+            <Title level={4} style={{ color: '#3A1078' }}>Frontend</Title>
             <List
               bordered
               dataSource={['React', 'TypeScript', 'TailwindCSS', 'Material-UI']}
@@ -97,8 +104,11 @@ const AboutMe: React.FC = () => {
               )}
               style={{ border: '1px solid #4E31AA', borderRadius: '8px' }}
             />
-            <br />
-            <Text strong style={{ color: '#3A1078' }}>Backend:</Text>
+          </SkillsCard>
+
+          {/* Backend Section */}
+          <SkillsCard>
+            <Title level={4} style={{ color: '#3A1078' }}>Backend</Title>
             <List
               bordered
               dataSource={['Node.js', 'Hono', 'Drizzle ORM', 'PostgreSQL']}
@@ -109,8 +119,11 @@ const AboutMe: React.FC = () => {
               )}
               style={{ border: '1px solid #4E31AA', borderRadius: '8px' }}
             />
-            <br />
-            <Text strong style={{ color: '#3A1078' }}>DevOps:</Text>
+          </SkillsCard>
+
+          {/* DevOps Section */}
+          <SkillsCard>
+            <Title level={4} style={{ color: '#3A1078' }}>DevOps</Title>
             <List
               bordered
               dataSource={['Docker', 'CI/CD', 'GitHub Actions']}
@@ -121,27 +134,15 @@ const AboutMe: React.FC = () => {
               )}
               style={{ border: '1px solid #4E31AA', borderRadius: '8px' }}
             />
-            <br />
-            <Text strong style={{ color: '#3A1078' }}>Other Tools:</Text>
-            <List
-              bordered
-              dataSource={['Redux Toolkit', 'Stripe', 'Paystack']}
-              renderItem={item => (
-                <List.Item style={{ borderRadius: '8px', marginBottom: '8px', backgroundColor: '#E6F7FF' }}>
-                  {item}
-                </List.Item>
-              )}
-              style={{ border: '1px solid #4E31AA', borderRadius: '8px' }}
-            />
-          </Paragraph>
-        </SkillsCard>
+          </SkillsCard>
+        </SkillsContainer>
 
         <Divider style={{ borderColor: '#3795BD' }} />
 
         {/* Hobbies or Interests Section */}
         <InterestsCard>
-          <Title level={4} style={{ color: '#3A1078' }}>Interests & Hobbies</Title>
-          <Paragraph>
+          <Title level={4} style={{ color: '#FFFFFF' }}>Interests & Hobbies</Title>
+          <Paragraph  style={{ color: '#FFFFFF' }}>
             Apart from coding, I enjoy exploring new technologies, contributing to open-source projects, and working on side projects.
             In my free time, I love playing chess, reading tech blogs, and cycling.
           </Paragraph>
